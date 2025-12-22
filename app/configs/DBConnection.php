@@ -2,7 +2,7 @@
 
     try{
     $pdo = new PDO(
-        "mysql:host=localhost;dbname=uniLabDB;charset=utf8",
+        "mysql:host=localhost;dbname=uniLibDB;charset=utf8",
         "root",
         "root"
     );
