@@ -164,4 +164,6 @@ UNILIB/
 └── README.md
 ```
 
+### Class Diagram
 
+![Class Diagram](image.png)
