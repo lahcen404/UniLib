@@ -2,13 +2,7 @@ create database uniLabDB;
 -- drop database unilabdb;
 use uniLabDB;
 
-create table authors(
-id INT AUTO_INCREMENT PRIMARY KEY,
-firstName VARCHAR(100) NOT NULL,
-lastName VARCHAR(100) NOT NULL,
-nationality VARCHAR(100) NOT NULL,
-description TEXT NOT NULL
-);
+
 
 create table users (
 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -25,8 +19,7 @@ title VARCHAR(100) NOT NULL,
 yearPublication INT(4) NOT NULL,
 genre VARCHAR(100) NOT NULL  ,
 availability ENUM('AVAILABLE','BORROWED') NOT NULL,
-author_id INT NOT NULL ,
-FOREIGN KEY (author_id) REFERENCES authors(id)
+
 
 );
 
@@ -42,7 +35,6 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 
 );
 
-SELECT * FROM authors;
 SELECT * FROM books;
 SELECT * FROM users;
 SELECT * FROM loans;
