@@ -80,3 +80,11 @@
          .details-card {
             transition: all 0.3s ease;
         }
+
+        /* list books 'admin' */
+
+        .table-row-hover:hover {
+            background-color: #f8fafc;
+            transform: scale(1.002);
+            transition: all 0.2s ease;
+        }
