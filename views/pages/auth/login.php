@@ -43,9 +43,9 @@
             <form action="#" class="space-y-7">
                 <!-- Email Field -->
                 <div class="space-y-2">
-                    <label for="email" class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Library Email</label>
+                    <label for="email" class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Email *</label>
                     <div class="relative group">
-                        <input type="email" id="email" name="email" placeholder="student@university.edu" 
+                        <input type="email" id="email" name="email" placeholder="email@email.com" 
                                class="w-full px-7 py-4.5 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 font-semibold login-input pr-12 group-hover:border-slate-200" required>
                         <i class="fas fa-envelope absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-blue-600 transition-colors"></i>
                     </div>
@@ -54,7 +54,7 @@
                 <!-- Password Field -->
                 <div class="space-y-2">
                     <div class="flex justify-between items-center px-1">
-                        <label for="password" class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Access Key</label>
+                        <label for="password" class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Password *</label>
                         <a href="#" class="text-[10px] font-black text-blue-600 uppercase tracking-widest hover:text-blue-700 transition">Forgot?</a>
                     </div>
                     <div class="relative group">
@@ -64,13 +64,6 @@
                     </div>
                 </div>
 
-                <!-- Trust Row -->
-                <div class="flex items-center justify-between px-1">
-                    <label class="flex items-center space-x-3 cursor-pointer group">
-                        <input type="checkbox" id="remember" class="w-5 h-5 rounded-lg border-slate-200 text-blue-600 focus:ring-blue-500 cursor-pointer">
-                        <span class="text-sm font-semibold text-slate-500 group-hover:text-slate-700 transition">Trust this terminal</span>
-                    </label>
-                </div>
 
                 <!-- Submit Button -->
                 <div class="pt-4">
