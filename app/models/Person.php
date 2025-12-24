@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../app/Enums/role.php';
+require_once __DIR__ . '/../Enums/role.php';
 
 abstract class Person{
 
@@ -31,7 +31,7 @@ abstract class Person{
     public function getLastName(){ return $this->lastName;}
     public function getEmail(){ return $this->email;}
     public function getRole(){ return $this->role;}
-
+    public function getPassword(){ return $this->password;}
 
     //setters
     public function setFirstName($fName){ $this->firstName = $fName;}
