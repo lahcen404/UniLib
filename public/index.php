@@ -1,8 +1,10 @@
 <?php
     require_once __DIR__ . '/../app/configs/DBConnection.php';
+    require_once __DIR__ . '/../app/models/User.php';
 
+    $pdo = Database::connectDB();
 
-require_once __DIR__ . '/../app/models/User.php';
+echo " Database is connected!<br>";
 
 $user = new User(1, 'lahcen', 'maskour', 'lahcen@lahcen.com', '123456');
 
