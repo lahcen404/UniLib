@@ -39,14 +39,6 @@
                         <!-- Row 1 -->
                         <tr class="table-row-hover">
                             <td class="px-8 py-6 text-sm font-bold text-slate-400">#101</td>
-                            <td class="px-8 py-6">
-                                <div class="flex items-center">
-                                    <div class="w-10 h-14 bg-slate-100 rounded-lg flex-shrink-0 mr-4 overflow-hidden border border-slate-200">
-                                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=100" class="w-full h-full object-cover">
-                                    </div>
-                                    <span class="text-sm font-bold text-slate-900">Advanced Quantum Mechanics</span>
-                                </div>
-                            </td>
                             <td class="px-8 py-6 text-sm font-bold text-slate-600">2023</td>
                             <td class="px-8 py-6">
                                 <span class="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-black uppercase rounded-lg border border-blue-100">Science</span>
