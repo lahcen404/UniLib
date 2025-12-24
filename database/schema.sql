@@ -1,6 +1,6 @@
-create database uniLabDB;
--- drop database unilabdb;
-use uniLabDB;
+create database uniLibDB;
+-- drop database unilibdb;
+use uniLibDB;
 
 
 
