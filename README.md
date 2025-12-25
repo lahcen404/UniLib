@@ -111,13 +111,21 @@ UNILIB/
 │   ├── configs/
 │   │   └── DBConnection.php
 │   │
+│   ├── Controllers/
+│   │   ├── AdminController.php
+│   │   ├── AuthController.php
+│   │   ├── BookController.php
+│   │   └── BorrowController.php
+│   │
+│   ├── Enums/
+│   │   └── Role.php
+│   │
 │   ├── models/
 │   │   ├── Person.php
-│   │   ├── Author.php
 │   │   ├── User.php
 │   │   ├── Admin.php
 │   │   ├── Book.php
-│   │   └── Loan.php
+│   │   └── Borrow.php
 │   │
 │   └── router/
 │       └── Router.php
@@ -134,26 +142,22 @@ UNILIB/
 │   ├── pages/
 │   │   ├── admin/
 │   │   │   ├── dashboard.php
-│   │   │   ├── add_author.php
-│   │   │   ├── edit_author.php
 │   │   │   ├── add_book.php
-│   │   │   └── edit_book.php
+│   │   │   ├── edit_book.php
+│   │   │   └── list-books-admin.php
 │   │   │
 │   │   ├── auth/
 │   │   │   ├── login.php
 │   │   │   └── register.php
-│   │   │
-│   │   ├── authors/
-│   │   │   ├── list.php
-│   │   │   └── details.php
 │   │   │
 │   │   ├── books/
 │   │   │   ├── list.php
 │   │   │   └── details.php
 │   │   │
 │   │   ├── user/
-│   │   │   └── my_loans.php
+│   │   │   └── my_borrows.php
 │   │   │
+│   │   ├── home.php
 │   │   └── 404.php
 │   │
 │   └── templates/
@@ -161,9 +165,16 @@ UNILIB/
 │       ├── footer.php
 │       └── layout.php
 │
+├── UML/
+│   └── class-diagram.png
+│
 └── README.md
+
 ```
 
 ### Class Diagram
 
-![Class Diagram](image.png)
+![Class Diagram](UML/image-1.png)
+
+### ER Diagram
+![ERD](UML/image.png)
