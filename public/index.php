@@ -24,6 +24,4 @@ $savedHash = $admin->getPassword();
 echo "Saved Hash: " . $savedHash . "<br>";
 
 
-
-
 ?>
