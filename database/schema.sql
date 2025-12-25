@@ -10,7 +10,7 @@ firstName VARCHAR(100) NOT NULL,
 lastName VARCHAR(100) NOT NULL,
 email VARCHAR(100) UNIQUE NOT NULL,
 password VARCHAR(255) NOT NULL,
-role ENUM ('user','admin') DEFAULT 'user' NOT NULL
+role ENUM ('USER','ADMIN') DEFAULT 'USER' NOT NULL
 );
 
 create table books(
@@ -24,12 +24,12 @@ availability ENUM('AVAILABLE','BORROWED') NOT NULL,
 );
 
 
-create table loans(
+create table borrows(
 id INT PRIMARY KEY AUTO_INCREMENT,
 loan_date DATE NOT NULL,
-return_date DATE ,
-book_id INT,
-user_id INT,
+return_date DATE NULL,
+book_id INT NOT NULL,
+user_id INT NOT NULL,
 FOREIGN KEY (book_id) REFERENCES books(id) ,
 FOREIGN KEY (user_id) REFERENCES users(id)
 
@@ -37,4 +37,4 @@ FOREIGN KEY (user_id) REFERENCES users(id)
 
 SELECT * FROM books;
 SELECT * FROM users;
-SELECT * FROM loans;
+SELECT * FROM borrows;
