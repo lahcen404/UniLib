@@ -51,8 +51,8 @@
                     <a href="#" class="text-slate-600 hover:text-blue-600 font-semibold transition">Catalog</a>
                     <a href="#" class="text-slate-600 hover:text-blue-600 font-semibold transition">My Loans</a>
                     <div class="h-6 w-px bg-slate-200"></div>
-                    <a href="#" class="text-slate-700 font-bold hover:text-blue-600 transition">Log In</a>
-                    <a href="#" class="bg-slate-900 text-white px-7 py-3 rounded-full font-bold hover:bg-blue-600 transition shadow-xl shadow-slate-200">Join Library</a>
+                    <a href="/login" class="text-slate-700 font-bold hover:text-blue-600 transition">Log In</a>
+                    <a href="/register" class="bg-slate-900 text-white px-7 py-3 rounded-full font-bold hover:bg-blue-600 transition shadow-xl shadow-slate-200">Join Library</a>
                 </div>
 
                 <div class="md:hidden flex items-center">

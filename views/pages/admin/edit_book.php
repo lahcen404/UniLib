@@ -24,7 +24,7 @@
                     <!-- Title Field -->
                     <div class="space-y-2">
                         <label for="title" class="text-sm font-black text-slate-400 uppercase tracking-widest ml-1">Book Title</label>
-                        <input type="text" id="title" name="title" value="Advanced Quantum Mechanics" 
+                        <input type="text" id="title" name="title" value="" 
                                class="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 font-semibold form-input" required>
                     </div>
 
@@ -32,7 +32,7 @@
                         <!-- Publication Year -->
                         <div class="space-y-2">
                             <label for="year" class="text-sm font-black text-slate-400 uppercase tracking-widest ml-1">Release Year</label>
-                            <input type="number" id="year" name="year" value="2023" 
+                            <input type="number" id="year" name="year" value="" 
                                    class="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 font-semibold form-input" required>
                         </div>
 
@@ -41,7 +41,8 @@
                             <label for="genre" class="text-sm font-black text-slate-400 uppercase tracking-widest ml-1">Genre / Category</label>
                             <select id="genre" name="genre" 
                                     class="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 font-semibold form-input appearance-none">
-                                <option value="science" selected>Science & Technology</option>
+                                <option selected>Genre</option>
+                                <option value="science" >Science & Technology</option>
                                 <option value="literature">Classic Literature</option>
                                 <option value="history">History & Archives</option>
                                 <option value="philosophy">Philosophy</option>
@@ -74,15 +75,7 @@
                         </div>
                     </div>
 
-                    <!-- Book Cover -->
-                    <div class="space-y-2">
-                        <label for="cover" class="text-sm font-black text-slate-400 uppercase tracking-widest ml-1">Cover Image URL</label>
-                        <div class="relative">
-                            <input type="url" id="cover" name="cover" value="https://images.unsplash.com/photo-1544947950-fa07a98d237f" 
-                                   class="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 font-semibold form-input pr-12">
-                            <i class="fas fa-image absolute right-6 top-1/2 -translate-y-1/2 text-slate-300"></i>
-                        </div>
-                    </div>
+            
 
                     <!-- Submit & Delete Actions -->
                     <div class="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
