@@ -26,7 +26,7 @@ abstract class Person{
 
     
 //getteers
-    public function getId(){ return $this-> id; }
+    public function getId(){ return $this->id; }
     public function getFirstName(){ return $this->firstName;}
     public function getLastName(){ return $this->lastName;}
     public function getEmail(){ return $this->email;}
@@ -34,10 +34,10 @@ abstract class Person{
     public function getPassword(){ return $this->password;}
 
     //setters
-    public function setFirstName($fName){ $this->firstName = $fName;}
-    public function setLastName($lName){ $this->lastName = $lName;}
-    public function setEmail($email){ $this->email = $email;}
-    public function setPassword($password){$this->password = password_hash($password , PASSWORD_BCRYPT);}
+    public function setFirstName(string $fName): void { $this->firstName = $fName;}
+    public function setLastName(string $lName): void { $this->lastName = $lName;}
+    public function setEmail(string $email): void { $this->email = $email;}
+    public function setPassword(string $password): void {$this->password = password_hash($password , PASSWORD_BCRYPT);}
     public function setRole(Role $role){ $this->role = $role;}
 
     // getfullname
