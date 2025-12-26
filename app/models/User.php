@@ -1,6 +1,8 @@
 <?php
 
 require_once __DIR__ . '/Person.php';
+require_once __DIR__ . '/../configs/DBConnection.php';
+
 
 class User extends Person{
 
@@ -8,6 +10,20 @@ class User extends Person{
 
         parent::__construct($id,$firstName,$lastName,$email,$password);
     }
+
+    public static function findByEmail($pdo,$email){
+        $sql = "SELECT $ FROM users WHERE email = ?";
+        $stmt = mysqli_prepare($pdo,$sql);
+        mysqli_stmt_bind_param($stmt,"s",$email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if($data = mysqli_fetch_assoc($result)){
+            return new User($data['id'],$data['firstName'],$data['$lastName'],$data['email'],$data['password']);
+        }
+        return null;
+    }
+    
 
 
 }
