@@ -1,4 +1,7 @@
 <?php
+    require_once __DIR__. '/../configs/DBConnection.php';
+    require_once __DIR__ . '/../models/User.php';
+    require_once __DIR__ . '/../Enums/role.php';
 
 
 class AuthController{
@@ -13,11 +16,13 @@ class AuthController{
             $email = filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
             $password = $_POST['POST'];
 
+            global $pdo;
+
             if(empty($firstName) || empty($lastName)){
                 $errors['name'] = "First Name and Last Name are Required !!";
             }
 
-            if(empty($email) || filter_var($email,FILTER_VALIDATE_EMAIL)){
+            if(empty($email) || !filter_var($email,FILTER_VALIDATE_EMAIL)){
                 $errors['email']= "Email is Required !!";
             }
 
@@ -26,11 +31,24 @@ class AuthController{
             }
 
             if(empty($errors)){
+                if(User::findByEmail($pdo,$email)){
+                    $errors['emaail'] = "Email is already registered !!";
+                }else{
+                    $user = new User(null,$firstName,$lastName,$email,$password);
 
-                $user = new User(null,$firstName,$lastName,$email,$password);
+                    if($user->save($pdo)){
+                    header("Location : /login");
+                    exit();
+                }
+                }
 
+            
             }
         }
+        
+        $title = "Register - UniLab";
+        $content_file = "auth/register";
     }
+
 
 }
