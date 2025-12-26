@@ -87,6 +87,18 @@ class AuthController{
         $title = "Login - UniLab";
         $content_file = "auth/login";
 }
+
+    public function logout(){
+        session_start();
+        session_unset();
+        session_destroy();
+
+        header("Location: /login");
+        exit();
+    }
+
+
+
     }
 
     
