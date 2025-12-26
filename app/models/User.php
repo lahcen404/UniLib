@@ -23,7 +23,15 @@ class User extends Person{
         }
         return null;
     }
-    
+
+    public function save($pdo){
+        $sql = "INSERT INTO users (firstNmae , lastName , email , password , role) VALUES(?,?,?,?,'USER')";
+        $stmt = mysqli_stmt_prepare($pdo,$sql);
+
+        $password = $this->getPassword();
+        mysqli_stmt_bind_param($stmt,"ssss",$this->firstName,$this->lastName,$this->email,$password);
+        return mysqli_stmt_execute($stmt);
+    }
 
 
 }
