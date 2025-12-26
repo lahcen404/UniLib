@@ -45,10 +45,48 @@ class AuthController{
             
             }
         }
-        
+
         $title = "Register - UniLab";
         $content_file = "auth/register";
     }
 
+    public function login(){
+        $errors=[];
 
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            
+            $email = filter_input(INPUT_POST , 'email' , FILTER_SANITIZE_EMAIL);
+            $password = $_POST['password'];
+
+            if(!$email || empty($password)){
+                $errors['login'] = "Email and Password required !!!";
+    
+            }
+            if(empty($errors)){
+                $user = User::findByEmail($pdo,$email);
+
+                if($user && password_verify($password,$user->getPassword())){
+
+                    session_start();
+                    $_SESSION['user_id'] = $user->getId();
+                    $_SESSION['username'] = $user->getFullName();
+                    $_SESSION['role'] = $user->getRole();
+                }
+
+                if($_SESSION['role'] == Role::ADMIN){
+                    header("Location : /dashboard");
+                    exit();
+                }else{
+                     header("Location : /home");
+                    exit();
+                }
+            }else{
+                $errors['login'] = "Invaliid email or password";
+            }
+        }
+        $title = "Login - UniLab";
+        $content_file = "auth/login";
 }
+    }
+
+    
