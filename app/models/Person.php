@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../Enums/role.php';
+// require_once __DIR__ . '/../Enums/role.php';
 
 abstract class Person{
 
@@ -9,19 +9,20 @@ abstract class Person{
     protected $lastName;
     protected $email;
     protected $password;
-    protected Role $role;
+    protected $role;
 
-    public function __construct($id=null , $firstName=null , $lastName=null , $email=null , $password=null ){
+    public function __construct($id=null , $firstName=null , $lastName=null , $email=null , $password=null , $role=null){
         $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
-
-        if($password){
-            $this->setPassword($password);
+        $this->password = $password;
+        if($role){
+            $this->role = $role;
+        }else{
+            $this->role='USER';
         }
         
-        $this->role = Role::USER;
     }
 
     
@@ -37,8 +38,8 @@ abstract class Person{
     public function setFirstName(string $fName): void { $this->firstName = $fName;}
     public function setLastName(string $lName): void { $this->lastName = $lName;}
     public function setEmail(string $email): void { $this->email = $email;}
-    public function setPassword(string $password): void {$this->password = password_hash($password , PASSWORD_BCRYPT);}
-    public function setRole(Role $role){ $this->role = $role;}
+    public function setPassword(string $password): void {$this->password = $password; }
+    public function setRole(string $role){ $this->role = $role;}
 
     // getfullname
     public function getFullName(){return $this->firstName . ' ' . $this->lastName;}

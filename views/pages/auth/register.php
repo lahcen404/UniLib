@@ -40,18 +40,24 @@
                 <p class="text-slate-500 font-medium">Join our community of over 5,000 readers.</p>
             </div>
 
-            <form action="#" class="space-y-5">
+            <form action="/register" method="POST" class="space-y-5">
                 <!-- Name Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div class="space-y-2">
                         <label for="firstName" class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">First Name</label>
                         <input type="text" id="firstName" name="firstName" placeholder="John" 
                                class="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 font-semibold reg-input" required>
+                               <?php if(isset($errors['name'])): ?>
+                                    <p class="text-red-500 text-xs mt-1"><?= $errors['name'] ?></p>
+                                <?php endif; ?>
                     </div>
                     <div class="space-y-2">
                         <label for="lastName" class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Last Name</label>
                         <input type="text" id="lastName" name="lastName" placeholder="Doe" 
                                class="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 font-semibold reg-input" required>
+                               <?php if(isset($errors['name'])): ?>
+                                    <p class="text-red-500 text-xs mt-1"><?= $errors['name'] ?></p>
+                                <?php endif; ?>
                     </div>
                 </div>
 
@@ -61,6 +67,9 @@
                     <div class="relative group">
                         <input type="email" id="email" name="email" placeholder="john.doe@university.edu" 
                                class="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 font-semibold reg-input pr-12 group-hover:border-slate-200" required>
+                               <?php if(isset($errors['email'])): ?>
+                                    <p class="text-red-500 text-xs mt-1"><?= $errors['email'] ?></p>
+                                <?php endif; ?>
                         <i class="fas fa-envelope absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-blue-600 transition-colors"></i>
                     </div>
                 </div>
@@ -71,6 +80,9 @@
                     <div class="relative group">
                         <input type="password" id="password" name="password" placeholder="Create a strong password" 
                                class="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl text-slate-900 font-semibold reg-input pr-12 group-hover:border-slate-200" required>
+                               <?php if(isset($errors['password'])): ?>
+                                    <p class="text-red-500 text-xs mt-1"><?= $errors['password'] ?></p>
+                                <?php endif; ?>
                         <i class="fas fa-lock absolute right-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-blue-600 transition-colors"></i>
                     </div>
                 </div>

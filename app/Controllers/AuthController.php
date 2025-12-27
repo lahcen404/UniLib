@@ -1,0 +1,117 @@
+<?php
+    require_once __DIR__. '/../configs/DBConnection.php';
+    require_once __DIR__ . '/../models/User.php';
+    require_once __DIR__ . '/../Enums/role.php';
+
+
+class AuthController{
+
+    public function register(){
+
+        $pdo = Database::connectDB();
+        $errors = [];
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $firstName = filter_input(INPUT_POST,'firstName',FILTER_SANITIZE_SPECIAL_CHARS);
+            $lastName = filter_input(INPUT_POST , 'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
+            $email = filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
+            $password = $_POST['password'];
+
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+
+            if(empty($firstName) || empty($lastName)){
+                $errors['name'] = "First Name and Last Name are Required !!";
+            }
+
+            if(empty($email) || !filter_var($email,FILTER_VALIDATE_EMAIL)){
+                $errors['email']= "Email is Required !!";
+            }
+
+            if(strlen($password) < 6){
+                $errors['password'] = "Password must be more than 6 characters !!";
+            }
+
+            if(empty($errors)){
+                if(User::findByEmail($pdo,$email)){
+                    $errors['emaail'] = "Email is already registered !!";
+                }else{
+                    $user = new User(null,$firstName,$lastName,$email,$hashedPassword);
+
+                    if($user->save($pdo)){
+                    header("Location: /login");
+                    exit();
+                }
+                }
+
+            
+            }
+        }
+
+        $title = "Register - UniLab";
+        $content_file = "auth/register";
+
+        require_once __DIR__ . '/../../views/templates/layout.php';
+    }
+
+    public function login(){
+
+        $pdo= Database::connectDB();
+        $errors=[];
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            
+            $email = filter_input(INPUT_POST , 'email' , FILTER_SANITIZE_EMAIL);
+            $password = $_POST['password'];
+
+
+            if(!$email || empty($password)){
+                $errors['login'] = "Email and Password required !!!";
+    
+            }
+            if(empty($errors)){
+                $user = User::findByEmail($pdo,$email);
+
+                if($user && password_verify($password,$user->getPassword())){
+
+                    session_start();
+                    $_SESSION['user_id'] = $user->getId();
+                    $_SESSION['username'] = $user->getFullName();
+                    $_SESSION['role'] = $user->getRole();
+
+                    if(isset($_SESSION['role']) && $_SESSION['role'] === 'ADMIN'){
+                    header("Location: /dashboard");
+                    exit();
+                }else{
+                     header("Location: /home");
+                    exit();
+                }
+
+                     
+            }else{
+                $errors['login'] = "Invaliid email or password";
+            }
+                }
+
+           
+        }
+        $title = "Login - UniLab";
+        $content_file = "auth/login";
+
+        require_once __DIR__ . '/../../views/templates/layout.php';
+}
+
+    public function logout(){
+        if (session_status() === PHP_SESSION_NONE) session_start();
+        session_unset();
+        session_destroy();
+
+        header("Location: /login");
+        exit();
+    }
+
+
+
+    }
+
+    

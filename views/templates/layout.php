@@ -1,10 +1,14 @@
 <?php 
+
+$baseDir = __DIR__ . '/../../';
+
 require_once $baseDir . '/views/templates/header.php'; 
 ?>
 
 <main>
     <?php 
-    include $content_file; 
+    $viewPath = $baseDir . 'views/pages/' . $content_file . '.php';
+    require_once $viewPath;
     ?>
 </main>
 
