@@ -1,4 +1,6 @@
 <?php
+
+session_start();
     require_once __DIR__ . '/../app/configs/DBConnection.php';
 
 //     require_once __DIR__ . '/../app/models/User.php';
@@ -35,6 +37,7 @@ $router->addView('home',     'home',           'Home - UniLib');
 $router->addController('login',    'AuthController',     'login');
 $router->addController('register', 'AuthController',  'register');
 $router->addController('logout',   'AuthController',     'logout');
+$router->addController('storeBook',   'BookController',     'addBook');
 
 
 $router->addView('dashboard','admin/dashboard','Admin Dashboard');
