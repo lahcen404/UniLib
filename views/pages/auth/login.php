@@ -40,7 +40,13 @@
                 <p class="text-slate-500 font-medium">Step inside your digital library portal.</p>
             </div>
 
-            <form action="#" class="space-y-7">
+             <?php if (isset($errors['login'])): ?>
+                <div class="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
+                    <?= $errors['login'] ?>
+                </div>
+            <?php endif; ?>
+
+            <form action="/login" method="POST" class="space-y-7">
                 <!-- Email Field -->
                 <div class="space-y-2">
                     <label for="email" class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] ml-1">Email *</label>

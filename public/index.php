@@ -31,17 +31,20 @@ require_once __DIR__ . '/../app/router/Router.php';
 $router = new Router();
 
 
-$router->add('home',     'home',           'Home - UniLib');
-$router->add('login',    'auth/login',     'Login - UniLib');
-$router->add('register', 'auth/register',  'Register - UniLib');
-$router->add('dashboard','admin/dashboard','Admin Dashboard');
-$router->add('add_book','admin/add_book','Add Book');
-$router->add('edit_book','admin/edit_book','Edit Book');
-$router->add('list-books-admin','admin/list-books-admin','Admin - List Book');
-$router->add('details','books/details','Book Details');
-$router->add('list','books/list','Book Details');
-$router->add('my_borrows','user/my_borrows','Book Details');
-$router->add('404','404','404 Error');
+$router->addView('home',     'home',           'Home - UniLib');
+$router->addController('login',    'AuthController',     'login');
+$router->addController('register', 'AuthController',  'register');
+$router->addController('logout',   'AuthController',     'logout');
+
+
+$router->addView('dashboard','admin/dashboard','Admin Dashboard');
+$router->addView('add_book','admin/add_book','Add Book');
+$router->addView('edit_book','admin/edit_book','Edit Book');
+$router->addView('list-books-admin','admin/list-books-admin','Admin - List Book');
+$router->addView('details','books/details','Book Details');
+$router->addView('list','books/list','Book Details');
+$router->addView('my_borrows','user/my_borrows','Book Details');
+$router->addView('404','404','404 Error');
 
 
 $router->route();

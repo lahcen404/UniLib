@@ -39,7 +39,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20">
                 <div class="flex items-center">
-                    <a href="#" class="flex items-center space-x-3 group">
+                    <a href="/home" class="flex items-center space-x-3 group">
                         <div class="bg-blue-600 p-2.5 rounded-xl group-hover:rotate-12 transition-transform shadow-lg shadow-blue-200">
                             <i class="fas fa-university text-white text-xl"></i>
                         </div>
@@ -47,12 +47,39 @@
                     </a>
                 </div>
 
-                <div class="hidden md:flex items-center space-x-10">
-                    <a href="#" class="text-slate-600 hover:text-blue-600 font-semibold transition">Catalog</a>
-                    <a href="#" class="text-slate-600 hover:text-blue-600 font-semibold transition">My Loans</a>
-                    <div class="h-6 w-px bg-slate-200"></div>
-                    <a href="/login" class="text-slate-700 font-bold hover:text-blue-600 transition">Log In</a>
-                    <a href="/register" class="bg-slate-900 text-white px-7 py-3 rounded-full font-bold hover:bg-blue-600 transition shadow-xl shadow-slate-200">Join Library</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/home" class="text-slate-600 hover:text-blue-600 font-semibold transition">Catalog</a>
+
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <a href="/my_borrows" class="text-slate-600 hover:text-blue-600 font-semibold transition">My Loans</a>
+
+                        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'ADMIN'): ?>
+                            <a href="/dashboard" class="text-blue-600 font-bold hover:text-blue-700 transition">
+                                <i class="fas fa-chart-pie mr-1"></i> Dashboard
+                            </a>
+                        <?php endif; ?>
+
+                        <div class="h-6 w-px bg-slate-200 mx-2"></div>
+
+                        <div class="flex items-center space-x-4">
+                            <span class="text-slate-500 font-medium text-sm">
+                                Welcome, <span class="text-slate-800 font-bold"><?php echo htmlspecialchars($_SESSION['username'] ?? 'User'); ?></span>
+                            </span>
+                            
+                            <a href="/logout" class="bg-red-50 text-red-600 px-5 py-2.5 rounded-full font-bold text-sm hover:bg-red-100 transition border border-red-100">
+                                <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                            </a>
+                        </div>
+
+                    <?php else: ?>
+                        <div class="h-6 w-px bg-slate-200"></div>
+                        
+                        <a href="/login" class="text-slate-700 font-bold hover:text-blue-600 transition">Log In</a>
+                        
+                        <a href="/register" class="bg-slate-900 text-white px-7 py-3 rounded-full font-bold hover:bg-blue-600 transition shadow-xl shadow-slate-200">
+                            Join Library
+                        </a>
+                    <?php endif; ?>
                 </div>
 
                 <div class="md:hidden flex items-center">

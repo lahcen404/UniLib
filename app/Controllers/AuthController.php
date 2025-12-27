@@ -8,15 +8,17 @@ class AuthController{
 
     public function register(){
 
+        $pdo = Database::connectDB();
         $errors = [];
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $firstName = filter_input(INPUT_POST,'firstName',FILTER_SANITIZE_SPECIAL_CHARS);
             $lastName = filter_input(INPUT_POST , 'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
             $email = filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
-            $password = $_POST['POST'];
+            $password = $_POST['password'];
 
-            global $pdo;
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
 
             if(empty($firstName) || empty($lastName)){
                 $errors['name'] = "First Name and Last Name are Required !!";
@@ -34,10 +36,10 @@ class AuthController{
                 if(User::findByEmail($pdo,$email)){
                     $errors['emaail'] = "Email is already registered !!";
                 }else{
-                    $user = new User(null,$firstName,$lastName,$email,$password);
+                    $user = new User(null,$firstName,$lastName,$email,$hashedPassword);
 
                     if($user->save($pdo)){
-                    header("Location : /login");
+                    header("Location: /login");
                     exit();
                 }
                 }
@@ -48,15 +50,20 @@ class AuthController{
 
         $title = "Register - UniLab";
         $content_file = "auth/register";
+
+        require_once __DIR__ . '/../../views/templates/layout.php';
     }
 
     public function login(){
+
+        $pdo= Database::connectDB();
         $errors=[];
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             
             $email = filter_input(INPUT_POST , 'email' , FILTER_SANITIZE_EMAIL);
             $password = $_POST['password'];
+
 
             if(!$email || empty($password)){
                 $errors['login'] = "Email and Password required !!!";
@@ -71,25 +78,31 @@ class AuthController{
                     $_SESSION['user_id'] = $user->getId();
                     $_SESSION['username'] = $user->getFullName();
                     $_SESSION['role'] = $user->getRole();
-                }
 
-                if($_SESSION['role'] == Role::ADMIN){
-                    header("Location : /dashboard");
+                    if(isset($_SESSION['role']) && $_SESSION['role'] === 'ADMIN'){
+                    header("Location: /dashboard");
                     exit();
                 }else{
-                     header("Location : /home");
+                     header("Location: /home");
                     exit();
                 }
+
+                     
             }else{
                 $errors['login'] = "Invaliid email or password";
             }
+                }
+
+           
         }
         $title = "Login - UniLab";
         $content_file = "auth/login";
+
+        require_once __DIR__ . '/../../views/templates/layout.php';
 }
 
     public function logout(){
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) session_start();
         session_unset();
         session_destroy();
 
