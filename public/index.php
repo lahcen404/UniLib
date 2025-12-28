@@ -43,11 +43,11 @@ $router->addController('list-books-admin', 'BookController', 'displayAllBooks');
 $router->addController('deleteBook', 'BookController', 'deleteBook');
 $router->addController('edit_book', 'BookController', 'editBook');
 $router->addController('update_book', 'BookController', 'updateBook');
+$router->addController('details', 'BookController', 'showDetails');
+
 
 
 $router->addView('dashboard','admin/dashboard','Admin Dashboard');
-$router->addView('details','books/details','Book Details');
-$router->addView('list','books/list','Book Details');
 $router->addView('my_borrows','user/my_borrows','Book Details');
 $router->addView('404','404','404 Error');
 
