@@ -50,7 +50,7 @@ $router->addController('my_borrows', 'BorrowController', 'myBorrows');
 
 
 
-$router->addView('dashboard','admin/dashboard','Admin Dashboard');
+$router->addController('dashboard', 'AdminController', 'index');
 $router->addView('404','404','404 Error');
 
 

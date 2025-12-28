@@ -115,9 +115,9 @@ class BorrowController {
             header("Location: login");
             exit();
         }
-        
+        $id = $_SESSION['user_id'];
         $pdo = Database::connectDB();
-        $borrows = Borrow::getActiveBorrowsByUser($pdo, $_SESSION['user_id']);
+        $borrows = Borrow::getActiveBorrowsByUser($pdo, $id);
         
         $title = "My Borrowed Books";
         $content_file = 'user/my_borrows';

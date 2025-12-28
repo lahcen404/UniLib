@@ -38,4 +38,12 @@ class User extends Person{
     }
 
 
+    // get all users
+    public static function getAll() {
+        $db = Database::connectDB(); 
+        $stmt = $db->query("SELECT * FROM users");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
 }
