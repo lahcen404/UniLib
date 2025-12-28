@@ -45,11 +45,12 @@ $router->addController('edit_book', 'BookController', 'editBook');
 $router->addController('update_book', 'BookController', 'updateBook');
 $router->addController('details', 'BookController', 'showDetails');
 $router->addController('borrow_book', 'BorrowController', 'borrowBook');
+$router->addController('return_book', 'BorrowController', 'returnBook');
+$router->addController('my_borrows', 'BorrowController', 'myBorrows');
 
 
 
 $router->addView('dashboard','admin/dashboard','Admin Dashboard');
-$router->addView('my_borrows','user/my_borrows','Book Details');
 $router->addView('404','404','404 Error');
 
 
