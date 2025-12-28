@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__. '/../configs/DBConnection.php';
 require_once __DIR__. '/../models/Book.php';
+require_once __DIR__. '/../../helpers/debug.php';
 
 class BookController {
 
@@ -10,10 +11,39 @@ class BookController {
 
         $books = Book::displayAllBooks($pdo);
 
+       // dd($books);
+
        $title = "Library Catalog";
        $content_file = 'admin/list-books-admin';
                 require_once __DIR__ . '/../../views/templates/layout.php';
 
+
+    }
+
+    public function deleteBook(){
+
+        $id = filter_input(INPUT_GET , 'id' , FILTER_VALIDATE_INT);
+        // dd($id);
+
+        if(!$id){
+            $_SESSION['errors']['global'] = "ID not Found !!!";
+            header("Location: /list-books-admin");
+            exit();
+        }else{
+            $pdo = Database::connectDB();
+            if(Book::deleteBook($pdo,$id)){
+                $_SESSION['success'] = "Book deleted succuessfully !!";
+
+            }else{
+                $_SESSION['errors']['global'] = "Probleeem in delete of Book !!";
+            }
+
+            header("Location: /list-books-admin");
+            exit();
+        }
+
+
+        
 
     }
 
