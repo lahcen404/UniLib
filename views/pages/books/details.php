@@ -73,18 +73,26 @@
 
             </section>
 
-            <?php else: ?>
+           <?php else: ?>
+                    
+                    <?php if ($book['availability'] === 'AVAILABLE'): ?>
+                        
+                        <form action="borrow_book" method="POST" class="w-full">
+                            <input type="hidden" name="book_id" value="<?= $book['id'] ?>">
+                            
+                            <button type="submit" class="w-full py-5 bg-blue-600 text-white text-lg font-bold rounded-3xl hover:bg-blue-700 transition shadow-xl shadow-blue-500/30 flex items-center justify-center transform active:scale-[0.98]">
+                                Confirm Borrowing 
+                                <i class="fas fa-arrow-right ml-4 text-blue-200"></i>
+                            </button>
+                        </form>
 
-            <?php if($book['availability'] === 'AVAILABLE'): ?>
-            <section class="pt-4">
-                <a href="#" class="w-full py-5 bg-blue-600 text-white text-lg font-bold rounded-3xl hover:bg-blue-700 transition shadow-xl shadow-blue-200 flex items-center justify-center">
-                    <i class="fas fa-book-reader mr-3"></i> Borrow This Book
-                </a>
-            </section>
+                    <?php else: ?>
+                        <button disabled class="w-full py-5 bg-slate-100 text-slate-400 text-lg font-bold rounded-3xl cursor-not-allowed flex items-center justify-center">
+                            Currently Unavailable
+                        </button>
+                    <?php endif; ?>
 
-
-            <?php endif ?>
-            <?php endif ?>
+                <?php endif; ?>
             
             <div class="text-center sm:text-left">
                 <a href="list-books-admin" class="inline-flex items-center text-slate-400 font-bold text-sm hover:text-blue-600 transition mt-4">
