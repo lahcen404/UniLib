@@ -21,6 +21,35 @@ class BookController {
 
     }
 
+    // display book details
+    public function showDetails() {
+
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+        // dd($id);
+        
+        if (!$id) {
+            header("Location: list-books-admin");
+            exit();
+        }
+
+        
+        $pdo = Database::connectDB();
+        $book = Book::getBookById($pdo, $id);
+
+        if (!$book) {
+            $_SESSION['errors']['global'] = "Book not found!";
+            header("Location: list-books-admin");
+            exit();
+        }
+
+        
+        $title = "Book Details: " . $book['title'];
+        $content_file = 'books/details'; 
+        require_once __DIR__ . '/../../views/templates/layout.php';
+    }
+
+    // edit a book
     public function editBook() {
 
         $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);

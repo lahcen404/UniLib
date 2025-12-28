@@ -94,6 +94,10 @@ if (session_status() === PHP_SESSION_NONE) {
 
                             <td class="px-8 py-6 text-right">
                                 <div class="flex justify-end space-x-2 opacity-60 group-hover:opacity-100 transition">
+
+                                <a href="details?id=<?= $book['id'] ?>" class="text-slate-500 hover:text-blue-600 font-bold mr-4 transition" title="View Details">
+                                     <i class="fas fa-eye"></i>
+                                </a>
                                     
                                     <a href="edit_book?id=<?= $book['id']; ?>" 
                                     class="w-10 h-10 bg-white border border-slate-200 text-slate-600 rounded-xl flex items-center justify-center hover:bg-blue-600 hover:text-white hover:border-blue-600 transition shadow-sm">
