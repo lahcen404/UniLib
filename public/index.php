@@ -38,12 +38,11 @@ $router->addController('login',    'AuthController',     'login');
 $router->addController('register', 'AuthController',  'register');
 $router->addController('logout',   'AuthController',     'logout');
 $router->addController('storeBook',   'BookController',     'addBook');
+$router->addController('list-books-admin', 'BookController', 'displayAllBooks');
 
 
 $router->addView('dashboard','admin/dashboard','Admin Dashboard');
-$router->addView('add_book','admin/add_book','Add Book');
 $router->addView('edit_book','admin/edit_book','Edit Book');
-$router->addView('list-books-admin','admin/list-books-admin','Admin - List Book');
 $router->addView('details','books/details','Book Details');
 $router->addView('list','books/list','Book Details');
 $router->addView('my_borrows','user/my_borrows','Book Details');

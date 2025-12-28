@@ -19,6 +19,15 @@ class Book{
         $this->availability = $availability;
     }
 
+    public static function displayAllBooks($pdo){
+
+        $sql = "SELECT * FROM books";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
     public function save($pdo){
 

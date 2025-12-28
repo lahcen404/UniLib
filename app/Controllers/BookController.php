@@ -4,6 +4,19 @@ require_once __DIR__. '/../models/Book.php';
 
 class BookController {
 
+    public function displayAllBooks(){
+
+        $pdo = Database::connectDB();
+
+        $books = Book::displayAllBooks($pdo);
+
+       $title = "Library Catalog";
+       $content_file = 'admin/list-books-admin';
+                require_once __DIR__ . '/../../views/templates/layout.php';
+
+
+    }
+
     public function addBook() {
 
        
