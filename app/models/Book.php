@@ -39,6 +39,8 @@ class Book{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    
+
 
     // update book 
     public function updateBook($pdo){
