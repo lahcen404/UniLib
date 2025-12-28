@@ -39,7 +39,7 @@ $router->addController('register', 'AuthController',  'register');
 $router->addController('logout',   'AuthController',     'logout');
 $router->addController('storeBook',   'BookController',     'addBook');
 $router->addController('list-books-admin', 'BookController', 'displayAllBooks');
-
+$router->addController('deleteBook', 'BookController', 'deleteBook');
 
 $router->addView('dashboard','admin/dashboard','Admin Dashboard');
 $router->addView('edit_book','admin/edit_book','Edit Book');

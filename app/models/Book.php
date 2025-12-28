@@ -28,6 +28,14 @@ class Book{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function deleteBook($pdo , $id){
+
+        $sql = "DELETE FROM books WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        return $stmt->execute([':id' => $id]);
+
+    }
+
 
     public function save($pdo){
 

@@ -94,12 +94,18 @@ if (session_status() === PHP_SESSION_NONE) {
 
                             <td class="px-8 py-6 text-right">
                                 <div class="flex justify-end space-x-2 opacity-60 group-hover:opacity-100 transition">
-                                    <a href="#" class="w-10 h-10 bg-white border border-slate-200 text-slate-600 rounded-xl flex items-center justify-center hover:bg-blue-600 hover:text-white hover:border-blue-600 transition shadow-sm">
+                                    
+                                    <a href="edit_book?id=<?= $book['id']; ?>" 
+                                    class="w-10 h-10 bg-white border border-slate-200 text-slate-600 rounded-xl flex items-center justify-center hover:bg-blue-600 hover:text-white hover:border-blue-600 transition shadow-sm">
                                         <i class="fas fa-edit text-xs"></i>
                                     </a>
-                                    <button class="w-10 h-10 bg-white border border-slate-200 text-red-500 rounded-xl flex items-center justify-center hover:bg-red-500 hover:text-white hover:border-red-500 transition shadow-sm">
+
+                                    <a href="deleteBook?id=<?= $book['id']; ?>" 
+                                    onclick="return confirm('Are you sure you want to delete this book?');"
+                                    class="w-10 h-10 bg-white border border-slate-200 text-red-500 rounded-xl flex items-center justify-center hover:bg-red-500 hover:text-white hover:border-red-500 transition shadow-sm">
                                         <i class="fas fa-trash-alt text-xs"></i>
-                                    </button>
+                                    </a>
+
                                 </div>
                             </td>
                         </tr>
