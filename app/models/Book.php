@@ -32,9 +32,15 @@ class Book{
 
 
     // update book 
-    public function updateBook($pdo , $id){
+    public function updateBook($pdo){
 
-        $sql = "UPDATE books SET(title,author,yearPublication,genre,availability) VALUES (:title , :author , :yearPublication , :genre , :availability) WHERE id= :id";
+        $sql = "UPDATE books SET 
+        title = :title ,
+        author= :author ,
+        yearPublication= :yearPublication ,
+        genre= :genre ,
+        availability= :availability
+         WHERE id= :id";
         $stmt = $pdo->prepare($sql);
 
         return $stmt->execute([
@@ -42,9 +48,20 @@ class Book{
             ':author' => $this->author,
             ':yearPublication' => $this->yearPublication,
             ':genre' => $this->genre,
-            'availability' => $this->availability,
-            'id' => $this->id
+            ':availability' => $this->availability,
+            ':id' => $this->id
         ]);
+    }
+
+    // get Book by Id
+    public static function getBookById($pdo,$id){
+
+        $sql = "SELECT * FROM books WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([':id'=>$id]);
+        $book = $stmt->fetch();
+        // dd($book);
+        return $book;
     }
 
 
