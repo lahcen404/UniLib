@@ -5,6 +5,7 @@ require_once __DIR__. '/../../helpers/debug.php';
 
 class BookController {
 
+    // display all books
     public function displayAllBooks(){
 
         $pdo = Database::connectDB();
@@ -20,6 +21,9 @@ class BookController {
 
     }
 
+    
+
+    // delete a book
     public function deleteBook(){
 
         $id = filter_input(INPUT_GET , 'id' , FILTER_VALIDATE_INT);
@@ -47,6 +51,8 @@ class BookController {
 
     }
 
+
+    // add a book
     public function addBook() {
 
        

@@ -10,6 +10,7 @@ class Book{
     private $availability;
 
 
+    
     public function __construct($id=null , $title=null , $author=null, $yearPublication=null , $genre=null , $availability=null){
         $this->id = $id;
         $this->title = $title;
@@ -19,6 +20,7 @@ class Book{
         $this->availability = $availability;
     }
 
+    // display all books 
     public static function displayAllBooks($pdo){
 
         $sql = "SELECT * FROM books";
@@ -28,6 +30,25 @@ class Book{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    // update book 
+    public function updateBook($pdo , $id){
+
+        $sql = "UPDATE books SET(title,author,yearPublication,genre,availability) VALUES (:title , :author , :yearPublication , :genre , :availability) WHERE id= :id";
+        $stmt = $pdo->prepare($sql);
+
+        return $stmt->execute([
+            ':title' => $this->title,
+            ':author' => $this->author,
+            ':yearPublication' => $this->yearPublication,
+            ':genre' => $this->genre,
+            'availability' => $this->availability,
+            'id' => $this->id
+        ]);
+    }
+
+
+    // delete book 
     public static function deleteBook($pdo , $id){
 
         $sql = "DELETE FROM books WHERE id = :id";
@@ -37,6 +58,7 @@ class Book{
     }
 
 
+    // create book
     public function save($pdo){
 
         $sql = "INSERT INTO books(title,author,yearPublication,genre,availability) VALUES(:title,:author,:yearPublication,:genre,:availability)";
