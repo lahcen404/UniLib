@@ -8,6 +8,11 @@ class AuthController{
 
     public function register(){
 
+         if(isset($_SESSION['user_id'])){
+       header("Location: /home");
+        exit();
+     }
+
         $pdo = Database::connectDB();
         $errors = [];
 
@@ -55,6 +60,11 @@ class AuthController{
     }
 
     public function login(){
+
+          if(isset($_SESSION['user_id'])){
+       header("Location: /home");
+        exit();
+     }
 
         $pdo= Database::connectDB();
         $errors=[];

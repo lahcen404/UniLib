@@ -51,7 +51,11 @@
                     <a href="/home" class="text-slate-600 hover:text-blue-600 font-semibold transition">Catalog</a>
 
                     <?php if (isset($_SESSION['user_id'])): ?>
+                        <?php if($_SESSION['role'] == 'USER'): ?>
                         <a href="/my_borrows" class="text-slate-600 hover:text-blue-600 font-semibold transition">My Loans</a>
+                        
+                        <?php endif ?>
+                        <a href="/list-books-admin" class="text-slate-600 hover:text-blue-600 font-semibold transition">All Books</a>
 
                         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'ADMIN'): ?>
                             <a href="/dashboard" class="text-blue-600 font-bold hover:text-blue-700 transition">

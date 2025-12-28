@@ -18,10 +18,11 @@ if (session_status() === PHP_SESSION_NONE) {
                        class="w-full pl-12 pr-6 py-3 bg-white border border-slate-200 rounded-2xl text-sm font-semibold focus:outline-none focus:ring-4 focus:ring-blue-500/10 transition">
                 <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-slate-300"></i>
             </div>
-            
+            <?php if($_SESSION['role'] == 'ADMIN'): ?>
             <a href="add_book" class="bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-200 flex items-center justify-center whitespace-nowrap">
                 <i class="fas fa-plus mr-2"></i> Add New Book
             </a>
+            <?php endif ?>
         </div>
     </div>
 
@@ -98,7 +99,7 @@ if (session_status() === PHP_SESSION_NONE) {
                                 <a href="details?id=<?= $book['id'] ?>" class="text-slate-500 hover:text-blue-600 font-bold mr-4 transition" title="View Details">
                                      <i class="fas fa-eye"></i>
                                 </a>
-                                    
+                                    <?php if($_SESSION['role'] == 'ADMIN'): ?>
                                     <a href="edit_book?id=<?= $book['id']; ?>" 
                                     class="w-10 h-10 bg-white border border-slate-200 text-slate-600 rounded-xl flex items-center justify-center hover:bg-blue-600 hover:text-white hover:border-blue-600 transition shadow-sm">
                                         <i class="fas fa-edit text-xs"></i>
@@ -109,6 +110,8 @@ if (session_status() === PHP_SESSION_NONE) {
                                     class="w-10 h-10 bg-white border border-slate-200 text-red-500 rounded-xl flex items-center justify-center hover:bg-red-500 hover:text-white hover:border-red-500 transition shadow-sm">
                                         <i class="fas fa-trash-alt text-xs"></i>
                                     </a>
+
+                                    <?php endif ?>
 
                                 </div>
                             </td>

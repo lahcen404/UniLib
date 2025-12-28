@@ -1,4 +1,8 @@
-
+<?php 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 
     <!-- DASHBOARD CONTENT -->
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -13,9 +17,9 @@
                 <button class="px-5 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-700 font-bold hover:bg-slate-50 transition shadow-sm">
                     <i class="fas fa-download mr-2"></i> Export Data
                 </button>
-                <button class="px-5 py-2.5 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-200">
-                    <i class="fas fa-plus mr-2"></i> Add New Book
-                </button>
+                <a href="add_book" class="bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-200 flex items-center justify-center whitespace-nowrap">
+                <i class="fas fa-plus mr-2"></i> Add New Book
+            </a>
             </div>
         </div>
 
@@ -29,7 +33,7 @@
                     <span class="text-green-500 text-xs font-black bg-green-50 px-2 py-1 rounded-lg">+12%</span>
                 </div>
                 <p class="text-slate-400 text-sm font-bold uppercase tracking-widest mb-1">Total Books</p>
-                <h3 class="text-3xl font-black text-slate-900">12,482</h3>
+                <h3 class="text-3xl font-black text-slate-900">12311</h3>
             </div>
 
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-xl shadow-slate-200/50 stat-card">

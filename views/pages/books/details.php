@@ -57,6 +57,8 @@
                 </div>
             </section>
 
+            <?php if($_SESSION['role'] == 'ADMIN'): ?>
+
             <section class="pt-4 flex flex-col sm:flex-row gap-4">
                 
                 <a href="edit_book?id=<?= $book['id'] ?>" class="flex-1 py-5 bg-slate-900 text-white text-lg font-bold rounded-3xl hover:bg-slate-800 transition shadow-xl shadow-slate-200 flex items-center justify-center group">
@@ -70,6 +72,19 @@
                 </a>
 
             </section>
+
+            <?php else: ?>
+
+            <?php if($book['availability'] === 'AVAILABLE'): ?>
+            <section class="pt-4">
+                <a href="#" class="w-full py-5 bg-blue-600 text-white text-lg font-bold rounded-3xl hover:bg-blue-700 transition shadow-xl shadow-blue-200 flex items-center justify-center">
+                    <i class="fas fa-book-reader mr-3"></i> Borrow This Book
+                </a>
+            </section>
+
+
+            <?php endif ?>
+            <?php endif ?>
             
             <div class="text-center sm:text-left">
                 <a href="list-books-admin" class="inline-flex items-center text-slate-400 font-bold text-sm hover:text-blue-600 transition mt-4">
