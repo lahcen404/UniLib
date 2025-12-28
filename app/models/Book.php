@@ -20,6 +20,15 @@ class Book{
         $this->availability = $availability;
     }
 
+    public static function updateStatus($pdo, $id, $status) {
+        $sql = "UPDATE books SET availability = :status WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        return $stmt->execute([
+            ':status' => $status,
+            ':id' => $id
+        ]);
+    }
+
     // display all books 
     public static function displayAllBooks($pdo){
 

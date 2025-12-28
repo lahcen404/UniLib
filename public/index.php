@@ -44,6 +44,7 @@ $router->addController('deleteBook', 'BookController', 'deleteBook');
 $router->addController('edit_book', 'BookController', 'editBook');
 $router->addController('update_book', 'BookController', 'updateBook');
 $router->addController('details', 'BookController', 'showDetails');
+$router->addController('borrow_book', 'BorrowController', 'borrowBook');
 
 
 
