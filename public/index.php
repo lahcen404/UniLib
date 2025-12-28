@@ -37,12 +37,15 @@ $router->addView('home',     'home',           'Home - UniLib');
 $router->addController('login',    'AuthController',     'login');
 $router->addController('register', 'AuthController',  'register');
 $router->addController('logout',   'AuthController',     'logout');
-$router->addController('storeBook',   'BookController',     'addBook');
+$router->addController('add_book', 'BookController', 'addBook');
+$router->addController('store_book', 'BookController', 'storeBook');
 $router->addController('list-books-admin', 'BookController', 'displayAllBooks');
 $router->addController('deleteBook', 'BookController', 'deleteBook');
+$router->addController('edit_book', 'BookController', 'editBook');
+$router->addController('update_book', 'BookController', 'updateBook');
+
 
 $router->addView('dashboard','admin/dashboard','Admin Dashboard');
-$router->addView('edit_book','admin/edit_book','Edit Book');
 $router->addView('details','books/details','Book Details');
 $router->addView('list','books/list','Book Details');
 $router->addView('my_borrows','user/my_borrows','Book Details');

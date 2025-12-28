@@ -5,6 +5,7 @@ require_once __DIR__. '/../../helpers/debug.php';
 
 class BookController {
 
+    // display all books
     public function displayAllBooks(){
 
         $pdo = Database::connectDB();
@@ -20,6 +21,78 @@ class BookController {
 
     }
 
+    public function editBook() {
+
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+
+        // dd($id);
+        
+        if (!$id) {
+            header("Location: list-books-admin");
+            exit();
+        }
+
+        $pdo = Database::connectDB();
+        $book = Book::getBookById($pdo, $id); 
+
+        if (!$book) {
+            header("Location: list-books-admin");
+            exit();
+        }
+
+        $title = "Edit Book";
+        $content_file = 'admin/edit_book'; 
+
+        require_once __DIR__ . '/../../views/templates/layout.php';
+    }
+
+    // update book
+    public function updateBook(){
+        
+        if($_SERVER['REQUEST_METHOD'] !== 'POST'){
+            header("Location: list-books-admin");
+            exit();
+        }
+
+        
+        $id     = filter_input(INPUT_POST , 'id' , FILTER_VALIDATE_INT);
+        $title  = trim(filter_input(INPUT_POST , 'title' , FILTER_SANITIZE_SPECIAL_CHARS));
+        $author = trim(filter_input(INPUT_POST , 'author' , FILTER_SANITIZE_SPECIAL_CHARS));
+        $year   = filter_input(INPUT_POST , 'yearPublication' , FILTER_VALIDATE_INT); // Changed variable name to match Model
+        $genre  = trim(filter_input(INPUT_POST , 'genre' , FILTER_SANITIZE_SPECIAL_CHARS));
+        $avail  = $_POST['availability'] ?: 'AVAILABLE';
+
+        $errors = [];
+
+        // Valiiidation
+        if (empty($title)) $errors['title'] = "Title is required!";
+        if (empty($author)) $errors['author'] = "Author is required!";
+        if (empty($year))   $errors['yearPub'] = "Year is required!";
+
+       
+        if (!empty($errors)) {
+            $_SESSION['errors'] = $errors;
+            header("Location: edit_book?id=" . $id);
+            exit();
+        }
+
+        
+        $book = new Book($id, $title, $author, $year, $genre, $avail);
+        $pdo = Database::connectDB();
+
+        if ($book->updateBook($pdo)) {
+            $_SESSION['success'] = "Book updated successfully!";
+            header("Location: list-books-admin"); 
+        } else {
+            $_SESSION['errors']['global'] = "Problem updating Book";
+            header("Location: edit_book?id=" . $id);
+        }
+        exit();
+    }
+        
+    
+
+    // delete a book
     public function deleteBook(){
 
         $id = filter_input(INPUT_GET , 'id' , FILTER_VALIDATE_INT);
@@ -47,7 +120,15 @@ class BookController {
 
     }
 
+
     public function addBook() {
+        $title = "Add New Book";
+        $content_file = 'admin/add_book';
+       require_once __DIR__ . '/../../views/templates/layout.php';
+        
+    }
+    // add a book
+    public function storeBook() {
 
        
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

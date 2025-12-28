@@ -33,7 +33,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 </div>
             <?php endif; ?>
 
-            <form action="storeBook" method="POST" class="space-y-6">
+            <form action="store_book" method="POST" class="space-y-6">
                 
                 <div class="space-y-2">
                     <label class="text-sm font-black text-slate-400 uppercase tracking-widest ml-1">Book Title</label>
